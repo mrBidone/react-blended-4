@@ -12,6 +12,7 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+import { filterReducer } from './filter/filterSlice';
 
 const todosConfig = {
   key: 'todos',
@@ -21,6 +22,7 @@ const todosConfig = {
 export const store = configureStore({
   reducer: {
     todos: persistReducer(todosConfig, todosReducer),
+    filter: filterReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

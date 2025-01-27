@@ -5,16 +5,16 @@ const INITIAL_STATE = {
   filter: '',
 };
 
-export const filtersSlice = createSlice({
+export const filterSlice = createSlice({
   name: 'filter',
   initialState: INITIAL_STATE,
   reducers: {
     setFilterValue(state, action) {
-      state.name = action.payload;
+      state.filter = action.payload;
     },
   },
 });
-export const filterReducer = filtersSlice.reducer;
+export const filterReducer = filterSlice.reducer;
 
 export const selectFilter = state => state.filter.filter;
 
@@ -22,6 +22,8 @@ export const selectFilteredTodos = createSelector(
   [selectTodos, selectFilter],
   (items, filterValue) =>
     items.filter(item => {
-      return item.name.toLowerCase().includes(filterValue.toLowerCase());
+      return item.text.toLowerCase().includes(filterValue.toLowerCase());
     }),
 );
+
+export const { setFilterValue } = filterSlice.actions;
